@@ -1,7 +1,10 @@
-## Put comments here that give an overall description of what your
-## functions do
+## The two functions in this pair work together to format a matrix to cache its inversion, saving
+## large amounts of computation time with large matrices.
 
-## Write a short comment describing this function
+
+## This first function below formats a matrix so its inversion can be cached, outputting a list
+## of getters and setters to be called by the other function in the pair (cacheSolve).
+## **input matrix must be invertible i.e. a square non-singular matrix**
 
 makeCacheMatrix <- function(x = matrix()) {
         m <- NULL
@@ -16,7 +19,9 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## Write a short comment describing this function
+## this second function below inverts matrices that have been formatted per the above makeCacheMatrix
+## function. It seeks the cached value of the matrix inversion if it has already been calcuated
+## **input must be a makeCacheMatrix-formatted list; a matrix entered directly will not compute properly**
 
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'

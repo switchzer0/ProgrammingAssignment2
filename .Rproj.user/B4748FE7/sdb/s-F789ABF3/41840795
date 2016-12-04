@@ -1,14 +1,14 @@
 {
     "collab_server" : "",
-    "contents" : "## Put comments here that give an overall description of what your\n## functions do\n\n## Write a short comment describing this function\n\nmakeCacheMatrix <- function(x = matrix()) {\n        m <- NULL\n        set <- function(y) {\n                x <<- y\n                m <<- NULL\n        }\n        get <- function() x\n        setinverse <- function(solve) m <<- solve\n        getinverse <- function() m\n        list(set = set, get = get, setinverse = setinverse, getinverse = getinverse)\n}\n\n\n## Write a short comment describing this function\n\ncacheSolve <- function(x, ...) {\n        ## Return a matrix that is the inverse of 'x'\n        m <- x$getinverse()\n        if(!is.null(m)) {\n                message(\"getting cached data\")\n                return(m)\n        }\n        data <- x$get()\n        m <- solve(data, ...)\n        x$setinverse(m)\n        m\n}\n",
+    "contents" : "## The two functions in this pair work together to format a matrix to cache its inversion, saving\n## large amounts of computation time with large matrices.\n\n\n## This first function below formats a matrix so its inversion can be cached, outputting a list\n## of getters and setters to be called by the other function in the pair (cacheSolve).\n## **input matrix must be invertible i.e. a square non-singular matrix**\n\nmakeCacheMatrix <- function(x = matrix()) {\n        m <- NULL\n        set <- function(y) {\n                x <<- y\n                m <<- NULL\n        }\n        get <- function() x\n        setinverse <- function(solve) m <<- solve\n        getinverse <- function() m\n        list(set = set, get = get, setinverse = setinverse, getinverse = getinverse)\n}\n\n\n## this second function below inverts matrices that have been formatted per the above makeCacheMatrix\n## function. It seeks the cached value of the matrix inversion if it has already been calcuated\n## **input must be a makeCacheMatrix-formatted list; a matrix entered directly will not compute properly**\n\ncacheSolve <- function(x, ...) {\n        ## Return a matrix that is the inverse of 'x'\n        m <- x$getinverse()\n        if(!is.null(m)) {\n                message(\"getting cached data\")\n                return(m)\n        }\n        data <- x$get()\n        m <- solve(data, ...)\n        x$setinverse(m)\n        m\n}\n",
     "created" : 1480018901976.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "381994585",
+    "hash" : "2558478225",
     "id" : "41840795",
-    "lastKnownWriteTime" : 1480179249,
-    "last_content_update" : 1480179249652,
+    "lastKnownWriteTime" : 1480865094,
+    "last_content_update" : 1480865094799,
     "path" : "~/Documents/DataScience/RProgramming/ProgrammingAssignment2/cachematrix.R",
     "project_path" : "cachematrix.R",
     "properties" : {
